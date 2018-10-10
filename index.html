@@ -208,6 +208,26 @@
         <div id="landing" class="landing">
             <div id="landing-img" class="landing-img"></div>
             <button id="show-button" class="show-button" type="button" onclick="showFortune()">Try your luck!</button>
+            <div class="hidden">
+                <script type="text/javascript">
+                        var images = new Array()
+                        function preload() {
+                            for (i = 0; i < preload.arguments.length; i++) {
+                                images[i] = new Image()
+                                images[i].src = preload.arguments[i]
+                            }
+                        }
+                        preload(
+                            "image/luckycat-lose1.svg",
+                            "image/luckycat-lose2.svg",
+                            "image/luckycat-lose3.svg",
+                            "image/luckycat-lose4.svg",
+                            "image/luckycat-lose5.svg",
+                            "image/luckycat-lose6.svg",
+                            "image/luckycat-win.svg",
+                        )
+                </script>
+            </div>
         </div>
         <div id="result" class="result">
             <div id="result-img" class="result-img"></div>
