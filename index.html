@@ -1,0 +1,307 @@
+<!DOCTYPE html>
+<html>
+	
+	<head>
+		
+		<title>Lucky cat reads your fortune</title>
+		
+		<meta charset="UTF-8">
+        <meta name='viewport' content='width=device-width, user-scalable=no,initial-scale=1, maximum-scale=1, minimum-scale=1, viewport-fit=cover'/>
+        <meta name="apple-mobile-web-app-capable" content="yes" />
+
+		<style>
+            html {
+                height: 100%;
+                width: 100%;
+            }
+
+            body {
+				background-color:#ffffff;
+				transition:all ease-out 4s 2s;
+                font-family: Arial, Helvetica, sans-serif;
+                font-size: 16px;
+                text-align: center;
+                height: 100%;
+                margin: 0px;
+			}
+
+            #background {
+                position: absolute;
+                border: 181px solid;
+                border-image: url(image/frame.png) 362 stretch;
+                height: calc(100% - 362px);
+                width: calc(100% - 362px);
+                top: 0;
+                margin: 0px;
+                z-index: -999;
+            }
+
+            @media screen and (orientation:portrait) {
+                .landing {
+                margin-top: 38%;
+                }
+
+                .landing-img {
+                margin: 0 auto;
+                width: 48%;
+                padding-top: 67.8%;
+                background-image: url(image/animation.gif);
+                background-repeat: no-repeat;
+                background-position: top;
+                background-size: 100%;
+                }
+
+                .result {
+                    opacity:0.0;
+                    margin-top: 38%;
+                    width:100%;
+                    transition: opacity 2s;
+                }
+
+                .result-img {
+                margin: 0 auto;
+                width: 48%;
+                padding-top: 67.8%;
+                }
+            }
+
+            @media screen and (orientation:landscape) {
+                .landing {
+                margin-top: 10%;
+                }
+
+                .landing-img {
+                margin: 0 auto;
+                width: 16%;
+                padding-top: 29%;
+                background-image: url(image/animation.gif);
+                background-repeat: no-repeat;
+                background-position: top;
+                background-size: 100%;
+                }
+
+                .result {
+                    opacity:0.0;
+                    margin-top: 5%;
+                    width:100%;
+                    transition: opacity 2s;
+                }
+
+                .result-img {
+                margin: 0 auto;
+                width: 16%;
+                padding-top: 29%;
+                }
+            }
+
+            @media screen and (orientation:portrait) {
+            }
+
+
+            .landing .show-button {
+                background-color: #D33839;
+                color: #ffffff;
+                font-size: 18px;
+                border-radius: 8px;
+                cursor: pointer;
+                height: 40px;
+                width: 170px;
+                display: inline-block;
+                margin: 30px auto;
+                font-weight: 700;
+                outline: none;
+                border: none;
+                position: relative;
+                transition: all 0.3s;
+            }
+
+
+            .result-text {
+                margin: 0 auto;
+                font-size: 24px;
+                font-weight: 900;
+                width: 70%;
+            }
+
+            .small-text {
+                margin: 10px auto;
+                font-size: 10px;
+                width: 90%;
+                color: #B4B4B4;
+            }
+
+            .win {
+                filter: blur(0px);
+				opacity:1.0;
+				transform:scale(1.0);
+				background-image: url(image/luckycat-win.svg);
+                background-repeat: no-repeat;
+                background-position: center;
+
+            }
+
+            .lose1 {
+                filter: blur(0px);
+				opacity:1.0;
+				transform:scale(1.0);
+				background-image: url(image/luckycat-lose1.svg);
+                background-repeat: no-repeat;
+                background-position: center;
+            }
+
+            .lose2 {
+                filter: blur(0px);
+				opacity:1.0;
+				transform:scale(1.0);
+				background-image: url(image/luckycat-lose2.svg);
+                background-repeat: no-repeat;
+                background-position: center;
+
+            }
+            .lose3 {
+                filter: blur(0px);
+				opacity:1.0;
+				transform:scale(1.0);
+				background-image: url(image/luckycat-lose3.svg);
+                background-repeat: no-repeat;
+                background-position: center;
+
+            }
+
+            .lose4 {
+                filter: blur(0px);
+				opacity:1.0;
+				transform:scale(1.0);
+				background-image: url(image/luckycat-lose4.svg);
+                background-repeat: no-repeat;
+                background-position: center;
+
+            }
+
+            .lose5 {
+                filter: blur(0px);
+				opacity:1.0;
+				transform:scale(1.0);
+				background-image: url(image/luckycat-lose5.svg);
+                background-repeat: no-repeat;
+                background-position: center;
+
+            }
+
+            .lose6 {
+                filter: blur(0px);
+				opacity:1.0;
+				transform:scale(1.0);
+				background-image: url(image/luckycat-lose6.svg);
+                background-repeat: no-repeat;
+                background-position: center;
+
+            }
+
+
+        </style>		
+    </head>
+
+    <body>
+        <div id="background"></div>
+        <div id="landing" class="landing">
+            <div id="landing-img" class="landing-img"></div>
+            <button id="show-button" class="show-button" type="button" onclick="showFortune()">Try your luck!</button>
+        </div>
+        <div id="result" class="result">
+            <div id="result-img" class="result-img"></div>
+            <div>
+                <p>Lucky Cat says</p> 
+            </div>
+            <div id="result-text" class="result-text"></div>
+        </div>
+
+    </body>
+    
+    <script>
+        var N_MESSAGE = 7;
+        var messages = [
+            "Shit is still shit even if it’s pretty.",
+            "Booze is thicker than water.",
+            "The journey of a thousand pain points begins with a single interview.",
+            "The most precious gift we can give you is wisdom and this sticker* <p class='small-text'>*Find a SingaFjordian to give you your swag.</p>",
+            "The fortune you seek is at another Equinox.",
+            "What is the sound of one Fjordian clapping?",
+            "You win! Arms up.",
+        ];
+
+
+
+        var resultImg = document.getElementById("result-img");
+        var resultText = document.getElementById("result-text");
+
+        var hasClass = function(el,cl) {
+            if(el && cl) {
+                if(el.classList) {
+                    return ((el.classList + "").indexOf(cl) > -1);
+                } else {
+                    return !!el.className.match(new RegExp('(\\s|^)'+cl+'(\\s|$)'));
+                }
+            } else {
+                return false;
+            }
+        }
+			
+        var addClass = function(el,cl) {
+            if(el) {
+                if(el.classList) {
+                    el.classList.add(cl);	
+                } else {
+                    if (!hasClass(el,cl)) el.className += " " + cl;
+                }
+            }
+        }
+        
+        var removeClass = function(el,cl) {
+            if(el) {
+                if(el.classList) {
+                    el.classList.remove(cl);	
+                } else {
+                    if(hasClass(el,cl)) {
+                        var reg = new RegExp('(\\s|^)'+cl+'(\\s|$)');
+                        el.className = el.className.replace(reg,' ');
+                    }
+                }
+            }
+        }
+
+        var setResult = function(m) {
+            if (m%2==0) {
+                var random = Math.round(Math.random() * (N_MESSAGE-1));
+                console.log("chance to win.");
+                if (random == 6) {
+                    resultText.innerHTML = messages[random];
+                    addClass(resultImg, "win");
+                } else {
+                    resultText.innerHTML = messages[random];
+                    addClass(resultImg, "lose"+ (random+1));
+                }                      
+            } else {
+                var random = Math.round(Math.random() * (N_MESSAGE-2));
+                addClass(resultImg, "lose"+(random+1));
+                resultText.innerHTML = messages[random];
+            }
+        }
+
+        var showFortune = function() {
+            var d = new Date();
+            var minute = d.getMinutes();
+
+            document.getElementById("landing").style.display = "none";
+        
+            setTimeout(function() {
+                document.getElementById("result").style.display = "block";
+                document.getElementById("result").style.opacity = 1.0;
+                setResult(minute);
+            },0);
+
+        }
+
+    </script>
+
+</html>
