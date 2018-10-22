@@ -39,7 +39,7 @@
 
             @media screen and (orientation:portrait) {
                 .landing {
-                    margin-top: 30%;
+                    margin-top: 20%;
                 }
 
                 .landing-img {
@@ -50,6 +50,7 @@
                     background-repeat: no-repeat;
                     background-position: top;
                     background-size: 100%;
+                    margin-top:20px;
                 }
 
                 .result {
@@ -63,6 +64,11 @@
                     margin: 0 auto;
                     width: 48%;
                     padding-top: 60%;
+                    filter: blur(0px);
+                    opacity:1.0;
+                    transform:scale(1.0);
+                    background-repeat: no-repeat;
+                    background-position: center;
                 }
             }
 
@@ -90,13 +96,15 @@
                 }
 
                 .result-img {
-                margin: 0 auto;
-                width: 16%;
-                padding-top: 24%;
+                    margin: 0 auto;
+                    width: 16%;
+                    padding-top: 24%;
+                    filter: blur(0px);
+                    opacity:1.0;
+                    transform:scale(1.0);
+                    background-repeat: no-repeat;
+                    background-position: center;
                 }
-            }
-
-            @media screen and (orientation:portrait) {
             }
 
 
@@ -109,7 +117,7 @@
                 height: 40px;
                 width: 170px;
                 display: inline-block;
-                margin: 30px auto;
+                margin: 5px auto;
                 font-weight: 700;
                 outline: none;
                 border: none;
@@ -127,77 +135,34 @@
 
             .small-text {
                 margin: 10px auto;
-                font-size: 10px;
-                width: 90%;
+                font-size: 12px;
+                width: 80%;
+                font-weight: 900;
                 color: #B4B4B4;
             }
 
-            .win {
-                filter: blur(0px);
-				opacity:1.0;
-				transform:scale(1.0);
-				background-image: url(image/luckycat-win.svg);
-                background-repeat: no-repeat;
-                background-position: center;
-
+            .dead {
+				background-image: url(image/luckycat_dead.svg);
             }
 
-            .lose1 {
-                filter: blur(0px);
-				opacity:1.0;
-				transform:scale(1.0);
-				background-image: url(image/luckycat-lose1.svg);
-                background-repeat: no-repeat;
-                background-position: center;
+            .eyeroll {
+				background-image: url(image/luckycat_eyeroll.svg);
             }
 
-            .lose2 {
-                filter: blur(0px);
-				opacity:1.0;
-				transform:scale(1.0);
-				background-image: url(image/luckycat-lose2.svg);
-                background-repeat: no-repeat;
-                background-position: center;
-
-            }
-            .lose3 {
-                filter: blur(0px);
-				opacity:1.0;
-				transform:scale(1.0);
-				background-image: url(image/luckycat-lose3.svg);
-                background-repeat: no-repeat;
-                background-position: center;
-
+            .kissy {
+				background-image: url(image/luckycat_kissy.svg);
             }
 
-            .lose4 {
-                filter: blur(0px);
-				opacity:1.0;
-				transform:scale(1.0);
-				background-image: url(image/luckycat-lose4.svg);
-                background-repeat: no-repeat;
-                background-position: center;
-
+            .playful {
+				background-image: url(image/luckycat_playful.svg);
             }
 
-            .lose5 {
-                filter: blur(0px);
-				opacity:1.0;
-				transform:scale(1.0);
-				background-image: url(image/luckycat-lose5.svg);
-                background-repeat: no-repeat;
-                background-position: center;
-
+            .sad {
+				background-image: url(image/luckycat_sad.svg);
             }
 
-            .lose6 {
-                filter: blur(0px);
-				opacity:1.0;
-				transform:scale(1.0);
-				background-image: url(image/luckycat-lose6.svg);
-                background-repeat: no-repeat;
-                background-position: center;
-
+            .smug {
+				background-image: url(image/luckycat_smug.svg);
             }
 
 
@@ -207,7 +172,13 @@
     <body>
         <div id="background"></div>
         <div id="landing" class="landing">
+            <div>Fjord Singapore Presents</div>
+            <div class="result-text">FJORTUNE CAT <br></div>
+
             <div id="landing-img" class="landing-img"></div>
+            <div class="small-text">
+                <br><p>Find out what your fjuture holds, and maybe win limited edition stickers!</p>
+            </div>
             <button id="show-button" class="show-button" type="button" onclick="showFortune()">Try your luck!</button>
             <div class="hidden">
                 <script type="text/javascript">
@@ -219,13 +190,12 @@
                             }
                         }
                         preload(
-                            "image/luckycat-lose1.svg",
-                            "image/luckycat-lose2.svg",
-                            "image/luckycat-lose3.svg",
-                            "image/luckycat-lose4.svg",
-                            "image/luckycat-lose5.svg",
-                            "image/luckycat-lose6.svg",
-                            "image/luckycat-win.svg",
+                            "image/luckycat_dead.svg",
+                            "image/luckycat_eyeroll.svg",
+                            "image/luckycat_kissy.svg",
+                            "image/luckycat_playful.svg",
+                            "image/luckycat_sad.svg",
+                            "image/luckycat_smug.svg",
                         )
                 </script>
             </div>
@@ -236,26 +206,90 @@
                 <p>Lucky Cat says</p> 
             </div>
             <div id="result-text" class="result-text"></div>
+            <div id="win-msg" class="small-text" style="display:none">Cheer up! Show this bad fortune to a SingaFjordian near you and get a sticker.</div>
         </div>
 
     </body>
     
     <script>
-        var N_MESSAGE = 7;
-        var messages = [
-            "Shit is still shit even if it’s pretty.",
-            "Booze is thicker than water.",
-            "The journey of a thousand pain points begins with a single interview.",
-            "The most precious gift we can give you is wisdom and this sticker* <p class='small-text'>*Find a SingaFjordian to give you your swag.</p>",
-            "The fortune you seek is at another Equinox.",
-            "What is the sound of one Fjordian clapping?",
-            "We need some other messages @brandon @jianjia",
-        ];
+        var N_CAT = 6;
+        var cats = [
+            {
+                "type" : "sad",
+                "number": 6,
+                "messages": [
+                    "I foresee out-of-scope requests before the next full moon.",
+                    "An upcoming Sketch update will render your favorite plug-in unusable.",
+                    "Your next project will ask for all deliverables to be in Excel only.",
+                    "You must use Helvetica somewhere in your next design, or something bad will happen.",
+                    "You will develop an allergy to caffeine.",
+                    "You think no one knows about *you know what*, but they know…"
+                ]
+            },
+            {
+                "type" : "playful",
+                "number": 5,
+                "messages": [
+                    "Help, I’m trapped inside a giant inflatable cat!",
+                    "You have something stuck in your teeth right now.",
+                    "You will not be asked to run a workshop at least until the coming Monday.",
+                    "Have you done your ethics and compliance training?",
+                    "The fortune you seek is not here. Try the hotel bar?"
+                ]
+            },
+            {
+                "type" : "dead",
+                "number": 6,
+                "messages": [
+                    "Failure is just an opportunity in disguise. Unless you really fucked up.",
+                    "Your next project will involve a chatbot.",
+                    "Everybody knows you’re drinking in the day. Everybody.",
+                    "Your next project will require 3.5x the number of iterations stated in the SOW. Apologies.",
+                    "Your next project is only 50% staffed and starts Monday, hold the fort!",
+                    "It’s your turn to do breakfast next Friday."
+                ]
+            },
+            {
+                "type" : "smug",
+                "number": 5,
+                "messages": [
+                    "The next time you name a file &#34;FINAL&#34;, it really will be.",
+                    "Your Post-Its&trade; will never peel and your Sharpies won’t dry out.",
+                    "Your chargeability is the envy of the region.",
+                    "A foolish man listens to his heart. A wise man listens to fortune-telling cats.",
+                    "You’re the undisputed expert of what you claim to do."
+                ]
+            },
+            {
+                "type" : "kissy",
+                "number": 6,
+                "messages": [
+                    "You will meet a tall, dark consultant with a big WBS.",
+                    "You are 1 of 4 people in this room with the real <b>WOW</b> factor.",
+                    "What’s a nice designer like you doing in a place like this?",
+                    "Is it hot in here or is it just you?",
+                    "Are you a cat? Because I'm feline a connection between us.",
+                    "I’d happily spend all my 9 lives with you &lt;3"
+                ]
+            },
+            {
+                "type" : "eyeroll",
+                "number": 5,
+                "messages": [
+                    "That corn you ate at lunch wasn’t really organic.",
+                    "It’s not just your parents who don’t know what you do at work. It’s your supervisor too.",
+                    "Your journey to 1000 pain points will begin with a single interview.",
+                    "Take your time to make your own happiness. Start with a prototype.",
+                    "Clients can be sweet and sour, just like fake Chinese food."
+                ]
+            },
+        ]
 
 
 
         var resultImg = document.getElementById("result-img");
         var resultText = document.getElementById("result-text");
+        var winText = document.getElementById("win-msg");
 
         var hasClass = function(el,cl) {
             if(el && cl) {
@@ -292,37 +326,32 @@
             }
         }
 
-        var setResult = function(m) {
-            if (m%2==0) {
-                var random = Math.round(Math.random() * (N_MESSAGE-1));
-                console.log("chance to win.");
-                if (random == 6) {
-                    resultText.innerHTML = messages[random];
-                    addClass(resultImg, "win");
-                } else {
-                    resultText.innerHTML = messages[random];
-                    addClass(resultImg, "lose"+ (random+1));
-                }                      
-            } else {
-                var random = Math.round(Math.random() * (N_MESSAGE-2));
-                addClass(resultImg, "lose"+(random+1));
-                resultText.innerHTML = messages[random];
-            }
+        var setResult = function(cat, message) {
+            resultText.innerHTML = cats[cat].messages[message];
+            addClass(resultImg, cats[cat].type);
+            if (cats[cat].type == "dead") {
+                winText.style.display = "block";
+                console.log("win");
+            } 
+                      
+
         }
 
         var showFortune = function() {
-            var d = new Date();
-            var minute = d.getMinutes();
+            //var d = new Date();
+            //var minute = d.getMinutes();
+            var random_cat = Math.round(Math.random() * (N_CAT-1));
+            var n_msg = cats[random_cat].number;
+            var random_msg = Math.round(Math.random() * (n_msg-1));
 
-            document.getElementById("landing").style.display = "none";
-        
-            setTimeout(function() {
-                document.getElementById("result").style.display = "block";
-                document.getElementById("result").style.opacity = 1.0;
-                setResult(minute);
-            },0);
+            console.log("cat: " + random_cat + "  message: " + random_msg);
 
+            document.getElementById("landing").style.display = "none";    
+            document.getElementById("result").style.display = "block";
+            document.getElementById("result").style.opacity = 1.0;
+            setResult(random_cat, random_msg);
         }
+
 
     </script>
 
