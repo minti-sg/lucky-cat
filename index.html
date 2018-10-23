@@ -354,6 +354,10 @@
             addClass(resultImg, cats[cat].type);
             if (cats[cat].type == "dead") {
                 winText.style.display = "block";
+		document.getElementById("durian1").style.display = "block";
+            	document.getElementById("durian1").style.animation = "durianmove 4s 1";
+            	document.getElementById("durian2").style.display = "block";
+            	document.getElementById("durian2").style.animation = "durianmove 5s 1";
                 console.log("win");
             } 
                       
@@ -373,11 +377,6 @@
             document.getElementById("result").style.display = "block";
             document.getElementById("result").style.opacity = 1.0;
             setResult(random_cat, random_msg);
-
-            document.getElementById("durian1").style.display = "block";
-            document.getElementById("durian1").style.animation = "durianmove 4s 1";
-            document.getElementById("durian2").style.display = "block";
-            document.getElementById("durian2").style.animation = "durianmove 5s 1";
 
         }
 
