@@ -37,6 +37,21 @@
                 z-index: -999;
             }
 
+            #durian1, #durian2 {
+                position: absolute;
+                height: calc(100% - 362px);
+                width: calc(100% - 362px);
+                top: calc(100%);
+                margin: 0px;
+                display: none;
+                transition: all 0.3s;
+            }
+
+            @keyframes durianmove {
+    			from {top: calc(100% * -1)}
+    			to {top: calc(100%);}
+    		}
+
             @media screen and (orientation:portrait) {
                 .landing {
                     margin-top: 20%;
@@ -57,7 +72,7 @@
                     opacity:0.0;
                     margin-top: 30%;
                     width:100%;
-                    transition: opacity 2s;
+                    transition: opacity 3s;
                 }
 
                 .result-img {
@@ -173,7 +188,7 @@
         <div id="background"></div>
         <div id="landing" class="landing">
             <div>Fjord Singapore Presents</div>
-            <div class="result-text">FJORTUNE CAT <br></div>
+            <div class="result-text">FJORTUNE CAT<br></div>
 
             <div id="landing-img" class="landing-img"></div>
             <div class="small-text">
@@ -196,6 +211,8 @@
                             "image/luckycat_playful.svg",
                             "image/luckycat_sad.svg",
                             "image/luckycat_smug.svg",
+                            "image/Durian 1.png",
+                            "image/Durian 2.png",
                         )
                 </script>
             </div>
@@ -207,6 +224,12 @@
             </div>
             <div id="result-text" class="result-text"></div>
             <div id="win-msg" class="small-text" style="display:none">Cheer up! Show this bad fortune to a SingaFjordian near you and get a sticker.</div>
+        </div>
+        <div id="durian1">
+        	<img src="image/Durian 1.png" width="503" height="964"/>
+        </div>
+        <div id="durian2">
+        	<img src="image/Durian 2.png" width="503" height="964"/>
         </div>
 
     </body>
@@ -331,6 +354,10 @@
             addClass(resultImg, cats[cat].type);
             if (cats[cat].type == "dead") {
                 winText.style.display = "block";
+		document.getElementById("durian1").style.display = "block";
+            	document.getElementById("durian1").style.animation = "durianmove 4s 1";
+            	document.getElementById("durian2").style.display = "block";
+            	document.getElementById("durian2").style.animation = "durianmove 5s 1";
                 console.log("win");
             } 
                       
@@ -350,6 +377,7 @@
             document.getElementById("result").style.display = "block";
             document.getElementById("result").style.opacity = 1.0;
             setResult(random_cat, random_msg);
+
         }
 
 
