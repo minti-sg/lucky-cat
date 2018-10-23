@@ -2,7 +2,7 @@
 <html>
 	
 	<head>
-		
+	
 		<title>Lucky cat reads your fortune</title>
 		
 		<meta charset="UTF-8">
@@ -54,7 +54,7 @@
 
             @media screen and (orientation:portrait) {
                 .landing {
-                    margin-top: 20%;
+                    margin-top: 18%;
                 }
 
                 .landing-img {
@@ -70,7 +70,7 @@
 
                 .result {
                     opacity:0.0;
-                    margin-top: 30%;
+                    margin-top: 26%;
                     width:100%;
                     transition: opacity 3s;
                 }
@@ -107,7 +107,7 @@
                     opacity:0.0;
                     margin-top: 5%;
                     width:100%;
-                    transition: opacity 2s;
+                    transition: opacity 5s;
                 }
 
                 .result-img {
@@ -137,7 +137,7 @@
                 outline: none;
                 border: none;
                 position: relative;
-                transition: all 0.3s;
+                transition: opacity 2s;
             }
 
 
@@ -146,6 +146,8 @@
                 font-size: 22px;
                 font-weight: 900;
                 width: 70%;
+                opacity: 0;
+                transition: opacity 6s;
             }
 
             .small-text {
@@ -154,6 +156,11 @@
                 width: 80%;
                 font-weight: 900;
                 color: #B4B4B4;
+            }
+
+            .win-msg {
+                opacity: 0;
+                transition: opacity 6s;
             }
 
             .dead {
@@ -188,10 +195,10 @@
         <div id="background"></div>
         <div id="landing" class="landing">
             <div>Fjord Singapore Presents</div>
-            <div class="result-text">FJORTUNE CAT<br></div>
+            <div class="result-text" style="opacity:1">FJORTUNE CAT<br></div>
 
             <div id="landing-img" class="landing-img"></div>
-            <div class="small-text">
+            <div class="small-text" style="opacity:1">
                 <br><p>Find out what your fjuture holds, and maybe win limited edition stickers!</p>
             </div>
             <button id="show-button" class="show-button" type="button" onclick="showFortune()">Try your luck!</button>
@@ -223,7 +230,7 @@
                 <p>Lucky Cat says</p> 
             </div>
             <div id="result-text" class="result-text"></div>
-            <div id="win-msg" class="small-text" style="display:none">Cheer up! Show this bad fortune to a SingaFjordian near you and get a sticker.</div>
+            <div id="win-msg" class="win-msg small-text">Cheer up! Show this bad fortune to a SingaFjordian near you and get a sticker.</div>
         </div>
         <div id="durian1">
         	<img src="image/Durian 1.png" width="503" height="964"/>
@@ -251,13 +258,14 @@
             },
             {
                 "type" : "playful",
-                "number": 5,
+                "number": 6,
                 "messages": [
                     "Help, I’m trapped inside a giant inflatable cat!",
                     "You have something stuck in your teeth right now.",
                     "You will not be asked to run a workshop at least until the coming Monday.",
-                    "Have you done your ethics and compliance training?",
-                    "The fortune you seek is not here. Try the hotel bar?"
+                    "Have you done your ethics and compliance training? If not, maybe you should.",
+                    "The fortune you seek is not here. Try the hotel bar?",
+                    "I see a future relocation to a tropical paradise island under the rule of a tyrannical Accenture."
                 ]
             },
             {
@@ -274,13 +282,14 @@
             },
             {
                 "type" : "smug",
-                "number": 5,
+                "number": 6,
                 "messages": [
                     "The next time you name a file &#34;FINAL&#34;, it really will be.",
                     "Your Post-Its&trade; will never peel and your Sharpies won’t dry out.",
                     "Your chargeability is the envy of the region.",
                     "A foolish man listens to his heart. A wise man listens to fortune-telling cats.",
-                    "You’re the undisputed expert of what you claim to do."
+                    "You’re the undisputed expert of what you claim to do.",
+                    "You seem pretty talented. Do you have an Asian sibling?"
                 ]
             },
             {
@@ -292,7 +301,8 @@
                     "What’s a nice designer like you doing in a place like this?",
                     "Is it hot in here or is it just you?",
                     "Are you a cat? Because I'm feline a connection between us.",
-                    "I’d happily spend all my 9 lives with you &lt;3"
+                    "I’d happily spend all my 9 lives with you &lt;3",
+    
                 ]
             },
             {
@@ -350,18 +360,23 @@
         }
 
         var setResult = function(cat, message) {
-            resultText.innerHTML = cats[cat].messages[message];
-            addClass(resultImg, cats[cat].type);
-            if (cats[cat].type == "dead") {
-                winText.style.display = "block";
-		document.getElementById("durian1").style.display = "block";
-            	document.getElementById("durian1").style.animation = "durianmove 4s 1";
-            	document.getElementById("durian2").style.display = "block";
-            	document.getElementById("durian2").style.animation = "durianmove 5s 1";
-                console.log("win");
-            } 
-                      
 
+            document.getElementById("durian1").style.display = "block";
+            document.getElementById("durian1").style.animation = "durianmove 4s 1";
+            document.getElementById("durian2").style.display = "block";
+            document.getElementById("durian2").style.animation = "durianmove 5s 1";
+
+            addClass(resultImg, cats[cat].type);
+            resultText.innerHTML = cats[cat].messages[message];
+
+            setTimeout(() => {    
+                resultText.style.opacity = 1;
+                if (cats[cat].type == "dead") {
+                    winText.style.opacity = 1;
+                    console.log("win");
+                } 
+            }, 1000);
+                       
         }
 
         var showFortune = function() {
